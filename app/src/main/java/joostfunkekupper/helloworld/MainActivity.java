@@ -5,21 +5,26 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
+import android.provider.Settings.Secure;
 
 public class MainActivity extends Activity {
+
+    private static String ANDROID_ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ANDROID_ID = Secure.getString(this.getContentResolver(),
+                Secure.ANDROID_ID);
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        Toast.makeText(this, "RESUMING", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "RESUMING " + ANDROID_ID, Toast.LENGTH_LONG).show();
     }
 
 
